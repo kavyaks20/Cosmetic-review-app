@@ -1,1 +1,15 @@
-<p> super user login <successfully class=""></successfully></p>
+<h1>Superuser Dashboard</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Product</button>
+</form>
+<h2>Products</h2>
+<ul>
+    {% for product in products %}
+    <li>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
+        {{ product.name }} - {{ product.description }}
+    </li>
+    {% endfor %}
+</ul>

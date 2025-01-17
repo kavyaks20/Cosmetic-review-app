@@ -22,7 +22,7 @@ def login_view(request):
             login(request, user)
             if user.is_superuser:
                 return redirect('superuser_dashboard')
-            elif user.is_staff_user:
+            elif user.is_staff:
                 return redirect('staff_dashboard')
             else:
                 return redirect('enduser_dashboard')
