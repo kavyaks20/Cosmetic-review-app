@@ -1,12 +1,8 @@
 <h1>Superuser Dashboard</h1>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Add Product</button>
-</form>
+<a href="{% url 'products' %}" class ="btn">add product</a>
 <h2>Products</h2>
 <ul>
-    {% for product in products %}
+    {% for product in product %}
     <li>
         <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
         {{ product.name }} - {{ product.description }}

@@ -21,8 +21,12 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             if user.is_superuser:
+                # return redirect('products')
                 return redirect('superuser_dashboard')
-            elif user.is_staff:
+               
+
+            
+            elif user.is_staff_user:
                 return redirect('staff_dashboard')
             else:
                 return redirect('enduser_dashboard')
@@ -47,7 +51,8 @@ def logout_view(request):
     return redirect('login')
 
 
-
+def gotohome(request):
+    return render(request, 'index.html')
 
 
 
