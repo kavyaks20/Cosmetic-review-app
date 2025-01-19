@@ -1,0 +1,87 @@
+/* General body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Centered container for the form */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+/* Input field styles */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Input focus effect */
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button styles */
+form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    width: 10%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for button */
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* CSRF token field hidden styling */
+form input[name="csrfmiddlewaretoken"] {
+    display: none;
+}
+
+/* Form field spacing */
+form > *:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+/* Align the form's content */
+form {
+    text-align: left;
+}
+
+/* Form heading style */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}

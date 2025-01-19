@@ -1,11 +1,30 @@
+
+
+
+
+
+
+{% extends 'main.html' %} 
+{% load static %} 
+{% block super %}
+
 <h1>Superuser Dashboard</h1>
-<a href="{% url 'products' %}" class ="btn">add product</a>
+<a href="{% url 'products' %}" ><button type="submit">Add new product</button></a>
 <h2>Products</h2>
 <ul>
     {% for product in product %}
     <li>
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
+       
+        <img src="/pro/{{product.image}} " alt="{{ product.name }}" width="100">
         {{ product.name }} - {{ product.description }}
     </li>
     {% endfor %}
 </ul>
+{% endblock super %}
+{%block slider%}
+
+{% endblock slider %}
+{% block body %}
+{% endblock body %}
+{% block ClientTestimony %}
+{% endblock ClientTestimony %}

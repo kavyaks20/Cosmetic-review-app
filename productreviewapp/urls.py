@@ -10,7 +10,8 @@ urlpatterns=[
     path('trending/',views.trending ,name='trending'),
     path('blog/',views.blog ,name='blog'),
     path('contact/',views.contact ,name='contact'),
-    path('viewall/',views.view_allsuperproduct,name='view'),
+    path('viewall/',views.view_allsuperproduct,name='viewall'),
+    path('viewallstaff/',views.viewallstaffproduct,name='viewallstaff'),
 
     
 

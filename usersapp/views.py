@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserLoginForm
+from .models import CustomUser
 
 
 def register(request):
@@ -21,13 +22,14 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             if user.is_superuser:
-                # return redirect('products')
-                return redirect('superuser_dashboard')
+                return redirect('viewall')
+                # return redirect('superuser_dashboard')
                
 
             
             elif user.is_staff_user:
-                return redirect('staff_dashboard')
+                # print("hiii")
+                return redirect('viewallstaff')
             else:
                 return redirect('enduser_dashboard')
     else:

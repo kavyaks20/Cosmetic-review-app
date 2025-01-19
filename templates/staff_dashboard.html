@@ -1,2 +1,24 @@
+{% extends 'main.html' %} 
+{% load static %} 
+{% block super %}
 
-<p>staff user login.</p>
+<h1>Staffuser Dashboard</h1>
+
+<ul>
+    {% for rproduct in rproduct %}
+    <li>
+     
+        <img src="/pro/{{rproduct.image}} " alt="{{ rproduct.name }}" width="100"></a>
+        {{ rproduct.name }} - {{ rproduct.description }}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock super %}
+{%block slider%}
+
+{% endblock slider %}
+{% block body %}
+{% endblock body %}
+{% block ClientTestimony %}
+{% endblock ClientTestimony %}
