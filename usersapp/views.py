@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm, CustomUserLoginForm
 from .models import CustomUser
+from django.contrib import messages
 
 
 def register(request):
@@ -49,8 +50,10 @@ def enduser_dashboard(request):
     return render(request, 'enduser_dashboard.html')
 
 def logout_view(request):
-    logout(request)
-    return redirect('login')
+   if request.user.is_authenticated:
+        logout(request)  # Logs out the authenticated user
+        messages.success(request, "You have successfully logged out.")
+   return redirect('login')  # Redirect to the login page (or any other page)
 
 
 def gotohome(request):
@@ -58,47 +61,4 @@ def gotohome(request):
 
 
 
-# from django.shortcuts import render,redirect
-# from django.contrib.auth import authenticate,login,logout
-# from django.contrib.auth.models import User
-# from django.contrib import messages
 
-
-# # Create your views here.
-
-    
-# def register(request):
-#     if request.method=='POST':
-#         username=request.POST['username']
-#         email=request.POST['email']
-#         password=request.POST['password']
-#         confirm_password=request.POST['confirm_password']
-#         if password == confirm_password:
-#             try:
-#                 user = User.objects.create_user(username=username,email=email,password=password)
-#                 messages.success(request,"registration successfull!!!  Please login")
-#                 return redirect('login')
-#             except:
-#                 messages.error(request,"Username already exist!")
-#         else:
-#             messages.error(request,"Invalid username or password")
-#         return render(request,'register.html')
-
-
-            
-
-# def login(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user= authenticate(request,username=username,password=password)
-#         if user is not None:
-#             login(request,user)
-#             return redirect('home')         
-#         else:
-#             messages.error(request,"Invalid username or password")
-#     return render(request,'login.html')
-
-
-# def logout(request):
-#     return render('login')

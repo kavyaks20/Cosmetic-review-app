@@ -1,0 +1,41 @@
+{% extends 'main.html' %} 
+{% load static %} 
+{% block super %}
+{% csrf_token%}
+<h1>product details</h1>
+
+<h1>{{ product.name }}</h1>
+<img src="/pro/{{ product.image }}" alt="{{ product.name }}" width="300">
+<p>{{ product.description }}</p>
+<a href="{% url 'staff_review' product.id%}" ><button type="submit">Add Review</button></a>
+{% if avg_rating %}
+<p>avg_rating: {{ avg_rating |floatformat:1 }} / 5</p>
+{% endif %}
+<ul>
+    {% for review in reviews %}
+        <li>
+            <strong>{{ review.reviewer}}</strong>: {{ review.review }}
+            <br>Rating: {{ review.rating }}/5
+            
+            {% if review.rimage %}
+                <br><img src="/pro/{{ review.rimage }}" alt="Review Image" width="100">
+            {% endif %}
+            <br><small>Reviewed on {{ review.created_at|date:"F j, Y" }}</small>
+        </li>
+    {% empty %} 
+        <p>No reviews yet.</p>
+    {% endfor %}
+</ul>
+
+
+{% endblock super %}
+
+{%block slider%}
+
+{% endblock slider %}
+{% block body %}
+{% endblock body %}
+{% block ClientTestimony %}
+{% endblock ClientTestimony %}
+{% block footer %}
+{% endblock footer %}

@@ -1,1 +1,30 @@
 <p>enduser</p>
+
+
+
+
+
+{% extends 'main.html' %} 
+{% load static %} 
+{% block super %}
+
+<h2>Products</h2>
+<ul>
+    {% for product in product %}
+    <li>
+       
+        <img src="/pro/{{product.image}} " alt="{{ product.name }}" width="100">
+        {{ product.name }} - {{ product.description }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock super %}
+{%block slider%}
+
+{% endblock slider %}
+{% block body %}
+{% endblock body %}
+{% block ClientTestimony %}
+{% endblock ClientTestimony %}
+
+<!-- in case of superuser it add producs, edit, delete products -->

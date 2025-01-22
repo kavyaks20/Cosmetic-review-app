@@ -1,0 +1,7 @@
+<h1>Add review of the product</h1>
+
+<form method="POST" novalidate enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Add Review</button>
+</form>

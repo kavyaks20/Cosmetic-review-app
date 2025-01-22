@@ -10,11 +10,19 @@
     <title>Login</title>
 </head>
 <body>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
     <!-- <h2>Register</h2> -->
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }} 
         <button type="submit">Login</button>
     </form>
+    
 </body>
 </html>

@@ -1,8 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 from .forms import *
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 
 
 # Create your views here.
@@ -45,26 +47,48 @@ def view_allsuperproduct(request):
 
 
 #staff user---->
-def addreview(request):
+@login_required   #decorator for checking the authorized users
+def addreview(request,pk):
+    product = get_object_or_404(Product, pk=pk)  # Fetch the product by primary key
+
     if request.method == 'POST':
         form = ReviewForm(request.POST,request.FILES) 
         if form.is_valid():
-            form.save()
+            # form.save()
             review = form.save(commit=False)
-            review.added_by = request.user
+            review.product = product 
+            review.reviewer = request.user
             review.save()
-            return redirect('viewallstaff')
-        else:
-            rform = ReviewForm()
-        return render(request, 'add_review.html', {'rform': rform})
+            return redirect('staff_pro_detail',pk=pk)
+    else:
+        form = ReviewForm()
+    return render(request, 'add_review.html', {'form': form})
+
+def product_detail(request,pk):
+    product = get_object_or_404(Product, pk=pk)  # Fetch the specific product by its primary key
+    reviews = Review.objects.filter(product=product)
+    avg_rating= reviews.aggregate(Avg('rating'))['rating__avg']
     
+    print("hiiiiii",product,reviews)
+    return render(request, 'product_detail.html', {
+        'product': product,
+        'reviews': reviews,
+        'avg_rating': avg_rating
+    })
+    
+
 def viewallstaffproduct(request):
-    # rproduct = Product.objects.filter(added_by=request.user)
-    # product = Product.objects.get(id=product_id)
+   
     rproduct = Product.objects.all()
     return render(request, 'staff_dashboard.html', {'rproduct': rproduct})
 
 
+
+# End user section ------>
+def enduser_dashboard(request):
+    product = Product.objects.all()
+    return render(request,'enduser_dashboard.html',{'product':product})
+    # reviews= Review.objects.all()
 
 
 

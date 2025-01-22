@@ -9,4 +9,8 @@ class ProductForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['comment', 'image', 'rating']
+        fields = ['review', 'rimage', 'rating']
+        widgets = {
+            'review': forms.Textarea(attrs={'rows': 4, 'cols': 50}),
+            }  # to make the text area bigger
+        
