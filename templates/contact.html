@@ -1,0 +1,19 @@
+{% extends 'main.html' %} 
+{% load static %} 
+{% block super %}
+
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+</form>
+{% endblock super %}
+{%block slider%}
+
+{% endblock slider %}
+{% block body %}
+{% endblock body %}
+{% block ClientTestimony %}
+{% endblock ClientTestimony %}
+                          

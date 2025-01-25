@@ -1058,7 +1058,7 @@ form input {
     background: #fff;
     border: solid #ccc 1px;
     padding: 15px 15px;
-    width: 100%;
+    width: 10%;
     font-size: 14px;
     margin-bottom: 20px;
     text-transform: capitalize;
@@ -1120,7 +1120,7 @@ form input[type="submit"]:focus {
     font-weight: 400;
 }
 
-/* http://kute-themes.com/html/boutique/html/index.html
+http://kute-themes.com/html/boutique/html/index.html
 https://template.hasthemes.com/noraure/noraure/index.html
 https://preview.hasthemes.com/xoss-preview/xoss/index.html
- */
+

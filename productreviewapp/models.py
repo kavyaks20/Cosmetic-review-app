@@ -36,3 +36,9 @@ class Like(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='likes')
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     
+class Contactus(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    def __str__(self):
+        return self.name

@@ -7,7 +7,10 @@
 <h1>{{ product.name }}</h1>
 <img src="/pro/{{ product.image }}" alt="{{ product.name }}" width="300">
 <p>{{ product.description }}</p>
+{% if user.is_staff_user %}
 <a href="{% url 'staff_review' product.id%}" ><button type="submit">Add Review</button></a>
+{% endif %}
+
 {% if avg_rating %}
 <p>avg_rating: {{ avg_rating |floatformat:1 }} / 5</p>
 {% endif %}

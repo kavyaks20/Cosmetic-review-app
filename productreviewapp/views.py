@@ -14,16 +14,20 @@ def about(request):
     return render(request, 'about.html')
 def contact(request):
     return render(request, 'contact.html')
-def products(request):
-    return render(request, 'streams.html')
+
 def trending(request):
     return render(request, 'trending.html')
 def blog(request):
     return render(request, 'blog.html')
-def login(request):
-    return render(request, 'login.html')
-def register(request):
-    return render(request, 'register.html')
+def collections(request):
+    query= request.GET.get('q') #for getting search item
+    if query:
+        products=Product.objects.filter(name__icontains=query)  # search the product with name
+    else:
+        products = Product.objects.all()  # Fetch all products
+        reviews = Review.objects.all()  # Fetch all reviews
+    return render(request, 'collections.html', {'products': products, 'reviews': reviews, 'query':query})
+
 # superuser------>
 def addproduct(request):
     if request.method == 'POST':
@@ -79,17 +83,27 @@ def product_detail(request,pk):
 
 def viewallstaffproduct(request):
    
-    rproduct = Product.objects.all()
-    return render(request, 'staff_dashboard.html', {'rproduct': rproduct})
+    product = Product.objects.all()
+    return render(request, 'staff_dashboard.html', {'product': product})
 
 
 
 # End user section ------>
 def enduser_dashboard(request):
     product = Product.objects.all()
-    return render(request,'enduser_dashboard.html',{'product':product})
+    reviews=Review.objects.all()
+    return render(request,'enduser_dashboard.html',{'product':product,'reviews':reviews})
     # reviews= Review.objects.all()
 
+def contactus(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request,'contact.html',{'form':form})
+    else:
+        form = ContactForm()
+    return render(request,'contact.html',{'form':form})
 
 
 

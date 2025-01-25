@@ -13,24 +13,39 @@
                 </li>
 
                 <li class="nav-item">
-                   <a class="nav-link" href="">Collections</a>
+                   <a class="nav-link" href="{% url 'collections' %}">Collections</a>
                 </li>
                 <li class="nav-item">
                    <a class="nav-link" href="{% url 'blog' %}">Blog</a>
                 </li>
                 <li class="nav-item">
-                   <a class="nav-link" href="">Contact</a>
+                   <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                 </li>
-                <li class="nav-item dropdown">
+               {% if user.is_staff_user %}
+               <a href="{% url 'viewallstaff'%}">
+               <li><h4   color: #f7444e;>{{user.username}}</h4></li></a>
+               {% elif user.is_end_user %}
+               <a href="{% url 'viewallend'%}">
+                  <li><h4   color: #f7444e;>{{user.username}}</h4></li></a>
+                  {% elif user.is_superuser %}
+                  <a href="{% url 'viewall'%}">  
+                   <li><h4   color: #f7444e;>{{user.username}}</h4></li></a>
+                 
+              
+               {% else %}
+               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Register <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                      <li><a href="{% url 'login' %}">Login</a></li>
                      <li><a href="{% url 'register' %}">Register</li>
                   </ul>
                </li>
+            
+
+               {% endif %}
                <li class="nav-item">
                   <a class="nav-link" href="{% url 'logout'%}">Logout</a>
-               </li>
+                  </li>
                 <li class="nav-item">
                    <a class="nav-link" href="#">
                     <span class="material-symbols-outlined">
@@ -38,11 +53,21 @@
                         </span>
                    </a>
                 </li>
-                <form class="form-inline">
-                   <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                   <i class="fa fa-search" aria-hidden="true"></i>
-                   </button>
-                </form>
+                <!-- search bar with styles-->
+                <form class="form-inline" method="get" style="position: relative; max-width: 300px;">
+                  <input 
+                      type="text" 
+                      name="q" 
+                      placeholder="Search products..." 
+                      style="width: 100%; padding-right: 40px;" 
+                      class="form-control" >
+                  <button 
+                      class="btn nav_search-btn" 
+                      type="submit" 
+                      style="position: absolute; top: 0; right: 0; ; height: 70%; border: none; background: none;">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                  </button>
+              </form>
 
              </ul>
           </div>

@@ -14,3 +14,11 @@ class ReviewForm(forms.ModelForm):
             'review': forms.Textarea(attrs={'rows': 4, 'cols': 50}),
             }  # to make the text area bigger
         
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contactus
+        fields = ['name', 'email', 'message']
+        widgets = {
+            'message': forms.Textarea(attrs={'rows': 4, 'cols': 50}),
+            }  # to make the text area bigger
+       
