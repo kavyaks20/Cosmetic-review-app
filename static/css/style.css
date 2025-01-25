@@ -1033,12 +1033,13 @@ div.form_sub .field input[type="email"], div.form_sub .field input[type="email"]
     font-size: 14px;
     position: relative;
     box-shadow: none;
-    width: 100%;
+    width: 40%;
     height: 48px;
 }
 
 .form_sub {
     position: relative;
+    margin: 20%;
 }
 
 .form_sub input[type="email"] + input[type="submit"] {
@@ -1058,7 +1059,7 @@ form input {
     background: #fff;
     border: solid #ccc 1px;
     padding: 15px 15px;
-    width: 10%;
+    width: 20%;
     font-size: 14px;
     margin-bottom: 20px;
     text-transform: capitalize;
@@ -1069,7 +1070,7 @@ form textarea {
     background: #fff;
     border: solid #ccc 1px;
     padding: 15px 15px;
-    width: 100%;
+    width: 20%;
     min-height: 150px;
     font-size: 14px;
     margin-bottom: 20px;
@@ -1120,7 +1121,7 @@ form input[type="submit"]:focus {
     font-weight: 400;
 }
 
-http://kute-themes.com/html/boutique/html/index.html
-https://template.hasthemes.com/noraure/noraure/index.html
-https://preview.hasthemes.com/xoss-preview/xoss/index.html
+/* http://kute-themes.com/html/boutique/html/index.html */
+/* https://template.hasthemes.com/noraure/noraure/index.html */
+/* https://preview.hasthemes.com/xoss-preview/xoss/index.html */
 

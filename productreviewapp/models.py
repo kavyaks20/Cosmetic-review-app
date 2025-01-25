@@ -30,6 +30,7 @@ class Review(models.Model):
     review = models.TextField(null=True,blank=True,)
     rimage = models.ImageField(upload_to='review_images/', null=True, blank=True)
     rating = models.PositiveIntegerField(default=1,null=True,blank=True)  # Rating out of 5NULL
+    created_at = models.DateTimeField(auto_now_add=True,null=True)
     def __str__(self):
         return self.product.name
 class Like(models.Model):

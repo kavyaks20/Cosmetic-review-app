@@ -5,7 +5,7 @@
 <h1>Staff User Dashboard</h1>
 
 <ul>
-    {% for rproduct in rproduct %}
+    {% for product in product %}
     <li>
         <a href="{%url 'staff_pro_detail' product.id %}">{{product.name}}</a>
         <img src="/pro/{{product.image}} " alt="{{ product.name }}" width="100"></a>

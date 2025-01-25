@@ -20,13 +20,9 @@ def trending(request):
 def blog(request):
     return render(request, 'blog.html')
 def collections(request):
-    query= request.GET.get('q') #for getting search item
-    if query:
-        products=Product.objects.filter(name__icontains=query)  # search the product with name
-    else:
-        products = Product.objects.all()  # Fetch all products
-        reviews = Review.objects.all()  # Fetch all reviews
-    return render(request, 'collections.html', {'products': products, 'reviews': reviews, 'query':query})
+    product = Product.objects.all()
+    reviews=Review.objects.all()
+    return render(request, 'collections.html', {'product': product, 'reviews': reviews})
 
 # superuser------>
 def addproduct(request):
@@ -84,7 +80,8 @@ def product_detail(request,pk):
 def viewallstaffproduct(request):
    
     product = Product.objects.all()
-    return render(request, 'staff_dashboard.html', {'product': product})
+    reviews=Review.objects.all()
+    return render(request, 'staff_dashboard.html', {'product': product,'reviews':reviews})
 
 
 
