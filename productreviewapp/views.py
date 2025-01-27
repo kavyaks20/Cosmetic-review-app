@@ -108,6 +108,8 @@ def enduser_dashboard(request):
     return render(request,'enduser_dashboard.html',{'product':product,'reviews':reviews})
     # reviews= Review.objects.all()
 
+
+#contact
 def contactus(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
