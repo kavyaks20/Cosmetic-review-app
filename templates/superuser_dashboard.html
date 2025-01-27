@@ -16,8 +16,9 @@
     <li>
         <a href="{%url 'staff_pro_detail' product.id %}">{{product.name}}</a>
         <img src="/pro/{{product.image}} " alt="{{ product.name }}" width="100"></a>
-        {{ product.name }} - {{ product.description }}
+        <!-- {{ product.description }} -->
     </li>
+    
     {% endfor %}
 </ul>
 

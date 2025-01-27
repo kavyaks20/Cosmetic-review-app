@@ -10,13 +10,10 @@ from django.db.models import Avg
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
-def about(request):
-    return render(request, 'about.html')
+
 def contact(request):
     return render(request, 'contact.html')
 
-def trending(request):
-    return render(request, 'trending.html')
 def blog(request):
     return render(request, 'blog.html')
 def collections(request):
@@ -42,6 +39,25 @@ def addproduct(request):
 def view_allsuperproduct(request):
     product = Product.objects.all()
     return render(request, 'superuser_dashboard.html', {'product': product})
+
+def editproduct(request,product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST,request.FILES,instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect ('viewall')
+    else:
+        form= ProductForm(instance=product)
+    return render(request, 'edit_product.html', {'form':form,'product':product})
+
+
+def deleteproduct(request,product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('viewall')
+    return render(request, 'delete_product.html', {'product': product})
 # end superuser----->
 
 
@@ -69,7 +85,7 @@ def product_detail(request,pk):
     reviews = Review.objects.filter(product=product)
     avg_rating= reviews.aggregate(Avg('rating'))['rating__avg']
     
-    print("hiiiiii",product,reviews)
+    # print("hiiiiii",product,reviews)
     return render(request, 'product_detail.html', {
         'product': product,
         'reviews': reviews,

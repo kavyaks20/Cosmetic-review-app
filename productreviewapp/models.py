@@ -21,6 +21,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images')
     slug= models.SlugField(null=True,blank=True)
     added_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE,null=True,blank=True,related_name='products')
+    liked_by = models.ManyToManyField(CustomUser,related_name='liked_products',blank=True)
     def __str__(self):
         return self.name
  

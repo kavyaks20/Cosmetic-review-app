@@ -81,6 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  
 }
 
 abbr[title],
@@ -153,13 +154,13 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #131314;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #0e0f0f;
   text-decoration: underline;
 }
 

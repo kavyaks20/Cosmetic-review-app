@@ -2,29 +2,41 @@
 {% load static %} 
 {% block super %}
 {% csrf_token%}
-<h1>product details</h1>
+
+<h2>product details</h2>
 
 <h1>{{ product.name }}</h1>
-<img src="/pro/{{ product.image }}" alt="{{ product.name }}" width="300">
+<li>
+<img src="/pro/{{ product.image }}" width="300">
+{% if user.is_superuser %}
+    <a href="{% url 'editproduct' product.id % }" ><button type="submit">Edit</button></a> 
+  
+    <a href="{% url 'deleteproduct' product.id %}"><button type="submit">Delete</button></a>
+    {% endif %}
+{%if user.is_end_user%}
 <p>{{ product.description }}</p>
+{% endif %}
 {% if user.is_staff_user %}
 <a href="{% url 'staff_review' product.id%}" ><button type="submit">Add Review</button></a>
 {% endif %}
-
+<div class="rating">
 {% if avg_rating %}
-<p>avg_rating: {{ avg_rating |floatformat:1 }} / 5</p>
+<h7 class="rating">avg_rating: {{ avg_rating |floatformat:1 }} / 5</h7>
 {% endif %}
 <ul>
+</div>
     {% for review in reviews %}
         <li>
             <strong>{{ review.reviewer}}</strong>: {{ review.review }}
-            <br>Rating: {{ review.rating }}/5
+            </li>
+            <small>Rating: {{ review.rating }}/5</small>
             
             {% if review.rimage %}
-                <br><img src="/pro/{{ review.rimage }}" alt="Review Image" width="100">
+                <img src="/pro/{{ review.rimage }}" alt="Review Image" width="100">
             {% endif %}
-            <br><small>Reviewed on {{ review.created_at|date:"F j, Y" }}</small>
+            <small>Reviewed on {{ review.created_at|date:"F j, Y" }}</small>
         </li>
+        <br>
     {% empty %} 
         <p>No reviews yet.</p>
     {% endfor %}
@@ -42,3 +54,8 @@
 {% endblock ClientTestimony %}
 {% block footer %}
 {% endblock footer %}
+<style>
+    .rating {
+        color: #f1c40f;
+        }
+</style>
